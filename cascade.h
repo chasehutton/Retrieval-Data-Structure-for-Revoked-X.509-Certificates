@@ -198,16 +198,10 @@ struct Table_API<BloomFilter> {
 
 template<typename Table>
 void build_cascade(int level, std::vector<Table>* cascade, const parlay::sequence<std::vector<uint8_t>> R, const parlay::sequence<std::vector<uint8_t>> S) {
-    // std::cout << "Current R size: " << R.size() << ", Current S size: " << S.size() << std::endl;
-    if (level > 1000) {return;}
     if (R.empty()) return;
     double k = (level == 0 && R.size() < S.size()) ? (-std::log2(double(R.size())/(std::sqrt(2)*double(S.size())))) : 1; 
     Table filter = Table_API<Table>::ConstructFromAddCount(R.size(),k);
     Table_API<Table>::AddAll(R, 0, R.size(), &filter);
-    // filter.AddAll(R, 0, R.size());    
-    // auto R_next = parlay::filter(S, [&] (auto&& s) {
-    //     return filter.Contain(s);
-    // });
     auto R_next = parlay::filter(S, [&] (auto&& s) {
       return Table_API<Table>::Contain(s, &filter);
     });
