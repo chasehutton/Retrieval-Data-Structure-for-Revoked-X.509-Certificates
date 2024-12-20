@@ -1,3 +1,3 @@
 # CMSC614 Final Project
 
-# See project writeup
+See project writeup
