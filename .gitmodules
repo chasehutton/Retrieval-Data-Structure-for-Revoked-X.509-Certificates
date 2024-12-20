@@ -1,0 +1,9 @@
+[submodule "includes/bloom"]
+	path = includes/bloom
+	url = https://github.com/ArashPartow/bloom.git
+[submodule "includes/xxHash"]
+	path = includes/xxHash
+	url = https://github.com/Cyan4973/xxHash.git
+[submodule "includes/parlaylib"]
+	path = includes/parlaylib
+	url = https://github.com/cmuparlay/parlaylib.git
